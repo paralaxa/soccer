@@ -18,7 +18,6 @@ public class SeasonRepositoryFileImpl implements SeasonRepository {
         try (FileOutputStream f = new FileOutputStream(new File(fileName), true)) {
             ObjectOutputStream os = new AppendableOOS(f);
             os.writeObject(data);
-            os.flush();
         } catch (Exception e) {
             throw new PersistenceException("Something went wrong during writing to stream", e);
         }
@@ -27,9 +26,7 @@ public class SeasonRepositoryFileImpl implements SeasonRepository {
     private Season readFromInputStreamById(final Long id) {
         try (FileInputStream fi = new FileInputStream(new File(fileName))) {
             ObjectInputStream oi = new ObjectInputStream(fi);
-            int i=0;
             while (true) {
-                System.out.println(i++);
                 Season season = getSeasonFromStream(id, oi);
                 if (season != null) return season;
             }

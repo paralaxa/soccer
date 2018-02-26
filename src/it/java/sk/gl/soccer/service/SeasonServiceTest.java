@@ -45,7 +45,6 @@ public class SeasonServiceTest {
 
     @Test
     public void createSeason() throws Exception {
-        System.out.println("season");
         Season season = new Season();
         season.setId(1l);
         season.setName("seasonName");
@@ -74,8 +73,6 @@ public class SeasonServiceTest {
 
     @Test
     public void findById() throws Exception {
-        System.out.println("find");
-
         //todo first create (use @Before annotated method)
         Season byId = seasonService.findById(1l);
         Assert.assertNotNull(byId);
